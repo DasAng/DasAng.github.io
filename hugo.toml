@@ -1,0 +1,33 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'hugo-initio'
+
+[params]
+    name = "DasAng"
+    description = "A passionate software engineer"
+    avatarclass = "circle"
+    author = "DasAng"
+    DateForm = "January 2, 2006"
+    year = 2024
+
+    showSubheader = true
+    showServices = true
+    showRecentWorks = true
+    showDownloads = true
+    showClients = true
+
+    showFooterContact = false
+    showFooterFollowMe = false
+    showFooterTextWidget = false
+    showFooterFormWidget = false
+
+    [[menu.main]]
+    name = "home"
+    url = "/"
+    weight = 1
+
+    [[menu.main]]
+    name = "blog"
+    url = "/post/"
+    weight = 5

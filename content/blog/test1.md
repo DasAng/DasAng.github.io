@@ -1,7 +1,7 @@
 +++
-date = "2013-06-17T12:00:00-00:00"
-title = "Post1"
-image = "images/aws_athena.jpg"
+date = "2024-04-29T21:00:00-00:00"
+title = "AWS Athena Projection Partition"
+image = "/images/aws_athena2.jpg"
 
 +++
 

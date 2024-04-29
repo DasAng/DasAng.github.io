@@ -5,7 +5,7 @@ theme = 'hugo-initio'
 
 [params]
     name = "DasAng"
-    description = "A passionate software engineer"
+    description = "Let's build something meaningful"
     avatarclass = "circle"
     author = "DasAng"
     DateForm = "January 2, 2006"

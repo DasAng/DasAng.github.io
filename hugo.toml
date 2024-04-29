@@ -2,10 +2,11 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'hugo-initio'
+paginate = 10
 
 [params]
     name = "DasAng"
-    description = "Let's build something meaningful"
+    description = "❝Sometimes you need to let go to gain something better❞"
     avatarclass = "circle"
     author = "DasAng"
     DateForm = "January 2, 2006"
@@ -29,5 +30,5 @@ theme = 'hugo-initio'
 
     [[menu.main]]
     name = "blog"
-    url = "/post/"
+    url = "/blog/"
     weight = 5

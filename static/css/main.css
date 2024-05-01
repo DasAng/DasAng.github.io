@@ -9,6 +9,11 @@
 
 
 /********************************* POST LISTING ***************************************************/
+.center-bottom {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+}
 
 .shadow-card {
     background-color: #f9f9f9;
@@ -32,6 +37,9 @@
     display: flex;
     width: 100%;
     flex-direction: row;
+    max-height: 512px;
+    padding-bottom: 40px;
+    position: relative;
 }
 
 .post-listing > .img {
@@ -62,6 +70,7 @@
 
     .post-container {
         flex-direction: column;
+        max-height: none;
     }
 
     .post-listing-image {

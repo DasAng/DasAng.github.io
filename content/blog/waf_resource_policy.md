@@ -12,7 +12,7 @@ At first it seems odd but after a bit of mucking around the AWS documentation it
 
 The project entailed hosting a Single Page Application (SPA) on Amazon S3, with a Web Application Firewall (WAF) deployed to regulate access to the site. See figure 1.
 
-![](/images/waf_resource_policy.PNG "Figure 1: WAF setup with IP restriction rules to control access to SPA")
+![](/images/waf_resource_policy.png "Figure 1: WAF setup with IP restriction rules to control access to SPA")
 
 The WAF is configured to store access logs to AWS Cloudwatch Logs.
 

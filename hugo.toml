@@ -6,7 +6,7 @@ paginate = 10
 
 [params]
     name = "DasAng"
-    description = "❝Always do you own research❞"
+    description = "❝Always do your own research❞"
     avatarclass = "circle"
     author = "DasAng"
     DateForm = "January 2, 2006"

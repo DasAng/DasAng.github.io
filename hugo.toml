@@ -35,5 +35,3 @@ paginate = 10
     url = "/blog/"
     weight = 5
 
-[params.google.analytics]
-    trackerId = "G-0DLWWX7KPX"

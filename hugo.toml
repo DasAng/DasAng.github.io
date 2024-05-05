@@ -2,7 +2,7 @@ baseURL = 'https://dasang.github.io/'
 languageCode = 'en-us'
 title = 'Explore, Learn, Innovate'
 theme = 'hugo-initio'
-paginate = 10
+paginate = 5
 
 [params]
     name = "DasAng"

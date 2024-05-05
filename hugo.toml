@@ -11,8 +11,8 @@ paginate = 5
     author = "DasAng"
     DateForm = "January 2, 2006"
     year = 2024
-    avatar = "/images/avatar.jpg"
-    banner = "/images/banner2.jpg"
+    avatar = "images/avatar.jpg"
+    banner = "images/banner2.jpg"
 
     showSubheader = true
     showServices = true

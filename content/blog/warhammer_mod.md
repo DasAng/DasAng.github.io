@@ -155,6 +155,8 @@ In order to provide a way for us to select an enemy unit on the battlefield I've
 
 When clicking on the icon, the game triggers events to the Lua script, signaling that a UI component has been clicked, allowing us to identify the targeted unit. However, this method bypasses the database parameter settings, such as range, as all control is managed exclusively through Lua scripts.
 
+We might be stretching the function beyond its original design as intended by the game developers, but it's the only approach that provides us with the necessary outcome.
+
 Now that we've established a method for identifying our enemy target via Lua scripting, let's delve into the specifics of the implementation.
 
 ### Script structure
@@ -178,5 +180,228 @@ The scripts are organized as follows:
 
 ### Implement the Mind Control spell
 
-We’ll delve into the **ang_mind_control_spell.lua** script, where the heart of the implementation resides.
+Let's delve into the **ang_mind_control_spell.lua** script, where the heart of the implementation resides.
 
+```lua
+-- variable initialization
+local mindControlSpell = "mind_control"
+local mindControlSpellImage = "mind_control.png"
+local mindControlListener = "mind_control_spell"
+local mindControlDurationSelection = 10000
+MindControl = MindControl or {}
+
+local mindControlSpellDuration = 60000
+```
+
+The provided code snippet merely initializes several variables for future use. Specifically, we aim for the spell to endure for 60 seconds, a duration dictated by the variable *mindControlSpellDuration*. Furthermore, *mindControlDurationSelection* is configured to 10 seconds, the allotted time for selecting an enemy unit.
+
+#### Function to find the unique identifier for the clicked unit
+
+In the subsequent segment of the code, we craft a function designed to furnish us with the unique identifier of the selected enemy unit. It's essential to note that each unit possesses its own distinct identifier.
+
+```lua
+--- @function getUnitUniqueId
+--- @description This function will determine the unique id of a unit from a selected UI component.
+--- It is used when an enemy unit is selected by clicking on the ping icon.
+--- @uic The uicomponent that is being clicked on
+--- @ending unique id of the unit that is extracted from the uicomponent path otherwise an empty string is returned.
+--------------------------------------------------------------------------------------------------------------------------- 
+local function getUnitUniqueId(uic)
+	local uic_parent = uic;
+	local name = uic_parent:Id();
+	while name ~= "root" do
+		if name == "modular_parent" then
+			break;
+		end;
+		uic_parent = UIComponent(uic_parent:Parent());
+		name = uic_parent:Id();
+    end;
+    if uic_parent then
+        local unitId = uic_parent:Parent()
+        if unitId then
+            local uuid = UIComponent(unitId)
+            return uuid:Id()
+        end
+    end
+	return "";
+end;
+```
+
+The process involves traversing the UI hierarchy of the clicked UI component in reverse order until we encounter a UI component named "modular_parent", thereby obtaining the unique identifier of the unit. We'll employ this function to identify the unit whenever the "ping icon" is clicked.
+
+
+#### Create UI controls to issue orders
+
+The next part of the code is where we create the UI controls to move around the enemy unit:
+
+```lua
+---------------------------------------------------------------------------------------------------------------------------
+--- @function createMindControlButtons
+--- @description This function creates the UI buttons for controlling enemy units under the
+--- mind control spell
+--------------------------------------------------------------------------------------------------------------------------- 
+MindControl.createMindControlButtons = function()
+    out("DEBUG: create mind control UI")
+    local relativeComponent =
+        find_uicomponent(
+        core:get_ui_root(),
+        "hud_battle",
+        "winds_of_magic"
+    )
+
+    if relativeComponent then
+        out("DEBUG: relative component: "..tostring(relativeComponent))
+    end
+
+    if not MindControl.moveEastButton then
+        out("DEBUG: create mind control move east button")
+        MindControl.moveEastButton = createButton(relativeComponent, "move_enemy_east", 42, 42, -140, 80, "ui/skins/default/icon_speed_controls_play.png", "CIRCULAR")
+        MindControl.moveEastButton:SetTooltipText("Move enemy under the 'mind control spell' east", true)
+        MindControl.moveEastButton:SetVisible(false)
+        registerForClick(MindControl.moveEastButton, "move_enemy_east", MindControl.moveEnemyEast)
+    end
+    if not MindControl.haltButton then
+        out("DEBUG: create mind control halt button")
+        MindControl.haltButton = createButton(relativeComponent, "halt_enemy", 42, 42, -240, 130, "ui/skins/default/icon_halt.png")
+        MindControl.haltButton:SetTooltipText("Halt enemy under the 'mind control spell'", true)
+        MindControl.haltButton:SetVisible(false)
+        registerForClick(MindControl.haltButton, "halt_enemy", MindControl.haltEnemy)
+    end
+    if not MindControl.attackButton then
+        MindControl.attackButton = createButton(relativeComponent, "attack_enemy", 42, 42, -120, 130, "ui/skins/default/icon_melee.png", "CIRCULAR_TOGGLE")
+        MindControl.attackButton:SetTooltipText("Instruct enemy under the 'mind control spell' to attack closest enemy unit", true)
+        MindControl.attackButton:SetVisible(false)
+        registerForClick(MindControl.attackButton, "attack_enemy", MindControl.attackEnemy)
+    end
+
+    ---  do the same for moving west, north and south
+end
+
+---------------------------------------------------------------------------------------------------------------------------
+--- @function showMindControlButtons
+--- @description This function shows or hides all the buttons for the spell "mind control"
+--------------------------------------------------------------------------------------------------------------------------- 
+MindControl.showMindControlButtons = function(visible)
+    out("DEBUG: show UI: "..tostring(visible))
+    if MindControl.moveEastButton then
+       MindControl.moveEastButton:SetVisible(visible)
+    end
+    --- do the same for the remaining buttons
+end
+```
+
+#### Move, Halt, Attack
+
+Here is the code to move, halt and attack nearby enemy unit. We will be utilizing the built-in game functions *goto_location()*, *halt()* and *start_attack_closest_enemy()*.
+
+```lua
+---------------------------------------------------------------------------------------------------------------------------
+--- @section move enemy east
+---------------------------------------------------------------------------------------------------------------------------
+MindControl.moveEnemyEast = function()
+    out("DEBUG: move enemy east")
+    if MindControl.selectedMindControlUnit then
+        MindControl.selectedMindControlUnit:stop_attack_closest_enemy()
+        local pos = MindControl.selectedMindControlUnit.unit:position()
+        out("DEBUG: current unit position ("..tostring(pos:get_x())..","..tostring(pos:get_y())..","..tostring(pos:get_z())..")")
+        local newpos = battle_vector:new(pos:get_x()+100,pos:get_y(),pos:get_z())
+        out("DEBUG: new unit position ("..tostring(newpos:get_x())..","..tostring(newpos:get_y())..","..tostring(newpos:get_z())..")")
+        MindControl.selectedMindControlUnit.uc:goto_location(newpos, true)
+    end
+end
+
+--- do the same for the other direction: north, south and west
+
+---------------------------------------------------------------------------------------------------------------------------
+--- @section halt enemy unit to a stand still
+---------------------------------------------------------------------------------------------------------------------------
+MindControl.haltEnemy = function()
+    out("DEBUG: halt enemy")
+    if MindControl.selectedMindControlUnit then
+        MindControl.selectedMindControlUnit:stop_attack_closest_enemy()
+        MindControl.selectedMindControlUnit:halt()
+    end
+end
+
+---------------------------------------------------------------------------------------------------------------------------
+--- @section attack nearby enemy unit
+---------------------------------------------------------------------------------------------------------------------------
+MindControl.attackEnemy = function(context)
+    out("DEBUG: attack closest enemy unit")
+    if MindControl.selectedMindControlUnit then
+        MindControl.selectedMindControlUnit:stop_attack_closest_enemy()
+        MindControl.selectedMindControlUnit:start_attack_closest_enemy()
+    end
+end
+```
+
+These actions will be triggered whenever one of the UI control buttons is clicked.
+
+#### Determine when the Mind Control spell is being cast
+
+The following code segment is crucial for determining when our spell is being cast. Essentially, it entails comparing whether the UI component being clicked contains an icon named "mind_control.png". As you can imagine, we can apply this same logic to any custom spells we wish to implement in the future, by checking against the icon name of the custom spell.
+
+```lua
+--- @function getSpell
+--- @description This function determines whether the passed in ui component is a spell button or not.
+--- If it is a spell button then this function will return the name of the spell
+--- @component the full image path for the spell. Fx: data/ui/Battle UI/ability_icons/mind_control.png
+--------------------------------------------------------------------------------------------------------------------------- 
+MindControl.getSpell = function(component)
+    local componentImagePath = component:GetImagePath()
+    local isspell = uicomponent_descended_from(component, "spell_parent")
+    local currentState = component:CurrentState()
+    out("DEBUG: image path "..tostring(component:GetImagePath()))
+    out("DEBUG: is spell "..tostring(isspell))
+    out("DEBUG: current state "..tostring(currentState))
+    if isspell and currentState == "hover" and componentImagePath then
+        out("DEBUG: check image path")
+        if ends_with(componentImagePath, mindControlSpellImage) then
+            out("DEBUG: got spell: "..tostring(mindControlSpell))
+            return mindControlSpell
+        end
+    end
+    return nil
+end
+```
+
+#### Make enemy units selectable
+
+This section of the code will display a yellow "ping icon" above each enemy unit, enabling them to be selected once we have cast the Mind Control spell. This utilizes the game function *add_ping_icon()*. This is the solution to enabling our custom spell to target any enemy unit through Lua scripting. By clicking on a UI component on the battlefield and determining the ID of the enemy unit from the clicked UI component, we've essentially enabled ourselves to apply various actions on the enemy unit dynamically.
+
+```lua
+---------------------------------------------------------------------------------------------------------------------------
+--- @function activateMindControl
+--- @description This function will activate the spell "mind control". It will find all enemy units
+--- and put a ping icon on them so they are selectable. It will wait for the player to select one of the
+--- enemy unit.
+--------------------------------------------------------------------------------------------------------------------------- 
+MindControl.activateMindControl = function()
+    out("DEBUG: activate mind control spell")
+    MindControl.clearMindControlUnits()
+    MindControl.mindControlUnits = script_units:new("MindControlUnits")
+    local armies = bm:get_non_player_alliance():armies()
+    for i = 1, armies:count() do
+        local army = armies:item(i)
+        local units = army:units()
+        for j = 1, units:count() do
+            local unit = units:item(j)
+            if unit and not unit:is_commanding_unit() then
+                out("DEBUG: unit: "..tostring(unit:name()))
+                local sunit = script_unit:new_by_reference(army, unit:name())
+                sunit:add_ping_icon(2,mindControlDurationSelection)
+                MindControl.mindControlUnits:add_sunits(sunit)
+            end
+        end
+    end
+    MindControl.lastSelectedMindControlUnitId = nil
+end
+```
+
+This opens the door to many more potential custom spells in the future, allowing us to perform a variety of actions targeting enemy units through Lua scripting.
+
+## Final thoughts
+
+Crafting custom spells isn't overly difficult when the goal is to tweak various database parameters affecting the spells. However, delving into more advanced functionalities, diverging from the game's intended mechanics, poses a greater challenge.
+
+Yet, with perseverance and resilience, I've demonstrated a method to circumvent the game mechanics, leveraging or perhaps pushing the boundaries of a game function to unlock exciting new functionalities for the game.

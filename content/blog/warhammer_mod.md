@@ -41,7 +41,7 @@ So, the objective of this mod would be to create our own spell that introduces a
 
 You can download the complete mod file here, or you can follow along to understand the process step by step.
 
-- [Complete mod]()
+- [Download mod](https://github.com/DasAng/warhammer_mind_control_spell/releases/download/v1.0.0/ang_control_spell.pack)
 
 You will need to have the [RPFM](https://github.com/Frodo45127/rpfm) installed to open the mod file and view it's content.
 
@@ -76,7 +76,7 @@ This will leave us with an empty mod file. Next we will need to add add some dat
 
 With the creation of our first database table, **unit_special_abilities**, we can now proceed to develop the additional database tables required to implement the basic functionality of our spell.
 
-We will first add a new row to our **unit_special_abilities**, right click on the table and choose **"Add row"**. For a comprehensive listing of all column values, please refer to the [mod](). Here are the columns of interest:
+We will first add a new row to our **unit_special_abilities**, right click on the table and choose **"Add row"**. For a comprehensive listing of all column values, please refer to the [mod](https://github.com/DasAng/warhammer_mind_control_spell/releases/download/v1.0.0/ang_control_spell.pack). Here are the columns of interest:
 
 | Column      | Value |
 | -------------- | ----------- |
@@ -111,7 +111,7 @@ That's all the database tables we need for the spell to be enabled in the game.
 
 ## Icons and UI Text
 
-The next step involves adding icons and text for the mind control spell to be displayed in-game. I'll leave it up to you to explore the [mod]() to see how it's implemented. It's quite straightforward, and I won't spend time explaining it here.
+The next step involves adding icons and text for the mind control spell to be displayed in-game. I'll leave it up to you to explore the [mod](https://github.com/DasAng/warhammer_mind_control_spell/releases/download/v1.0.0/ang_control_spell.pack) to see how it's implemented. It's quite straightforward, and I won't spend time explaining it here.
 
 ## Save Mod file
 
@@ -129,4 +129,31 @@ Now start the game and you should be able to see our spell in the army setup whe
 
 This is the crucial part that ensures the spell functions as intended. To enable the *Mind Control* spell to take control of an enemy unit, we'll need to provide some Lua code.
 
+Our objective is outlined as follows:
+
+1. The user selects the Mind Control spell from the spell panel to cast
+2. We aim for the user to be able to click on any enemy unit within sight, excluding enemy generals, to gain control. (Controlling enemy generals would overly empower the spell.)
+3. Upon gaining control, the enemy unit becomes responsive to our commands, allowing us to direct its actions.
+4. The available commands include: 
+    - move east
+    - move south
+    - move north
+    - move west
+    - halt
+    - attack nearest enemy unit.
+5. Control over the enemy unit is forfeited after one minute has elapsed.
+
+Figure 8 shows a screenshot of the UI in game to control the enemy unit
+
+![](/images/mind_control_ui_controls.png "Figure 8: Issue orders to enemy unit using the UI controls")
+
+**Step 2** is pivotal for the successful execution of this spell. In the game mechanics, there's no inherent method to directly target an enemy unit. Spell functionalities typically revolve around modifying database parameters such as spell range or target selection criteria, rather than providing direct control over spells via Lua scripts.
+
+### Make enemy unit clickable through UI
+
+In order to provide a way for us to select an enemy unit on the battlefield I've discovered a workaround by leveraging the game function called [add_ping_icon()](https://chadvandy.github.io/tw_modding_resources/WH3/battle/script_unit.html#function:script_unit:add_ping_icon). This function essentially enables us to overlay a clickable UI icon onto any unit present on the battlefield, akin to the yellow "eye" icon depicted in figure 8.
+
+When clicking on the icon, the game triggers events to the Lua script, signaling that a UI component has been clicked, allowing us to identify the targeted unit. However, this method bypasses the database parameter settings, such as range, as all control is managed exclusively through Lua scripts.
+
+Now that we've established a method for identifying our enemy target via Lua scripting, let's delve into the specifics of the implementation.
 

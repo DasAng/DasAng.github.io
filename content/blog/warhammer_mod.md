@@ -1,5 +1,5 @@
 +++
-date = "2024-05-05T08:00:00-00:00"
+date = "2024-05-06T12:00:00-00:00"
 title = "Total War: Warhammer 3 modding, create your own spell"
 image = "/images/warhammer_mod.jpg"
 

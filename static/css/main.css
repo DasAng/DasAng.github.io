@@ -1,3 +1,13 @@
+/********************************* Add border for markdown tables ***************************************************/
+
+table {
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid #333;
+    padding: 0 .2em;
+  }
+
 /********************************* POST SINGLE ***************************************************/
 
 .post-image {

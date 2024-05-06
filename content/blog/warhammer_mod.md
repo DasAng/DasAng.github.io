@@ -157,3 +157,26 @@ When clicking on the icon, the game triggers events to the Lua script, signaling
 
 Now that we've established a method for identifying our enemy target via Lua scripting, let's delve into the specifics of the implementation.
 
+### Script structure
+
+To view all the Lua scripts, download the [mod](https://github.com/DasAng/warhammer_mind_control_spell/releases/download/v1.0.0/ang_control_spell.pack) and open it using RPFM. The scripts can be found inside the **script/battle/mod** folder. You can also look at the scripts in the [github repository](https://github.com/DasAng/warhammer_mind_control_spell).
+
+The scripts are organized as follows:
+
+- *ang_battle.lua*
+- *ang_common.lua*
+- *ang_mind_control_spell.lua*
+- *ang_ui.lua*
+
+**ang_battle.lua**. This script is the main entry point and is responsible for loading the *ang_mind_control_spell.lua* script.
+
+**ang_common.lua**. This script contains common functionality being used by the *ang_mind_control_spell.lua* script
+
+**ang_mind_control_spell.lua**. This script contains all the logic for the actual spell implementation.
+
+**ang_ui.lua**. This script contains common UI related logic used by *ang_mind_control_spell.lua*.
+
+### Implement the Mind Control spell
+
+We’ll delve into the **ang_mind_control_spell.lua** script, where the heart of the implementation resides.
+

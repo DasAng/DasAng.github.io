@@ -19,4 +19,10 @@ In this project IoT data were collected and ingested into AWS Timestream using A
 
 ### E2E test
 
-An automated end-to-end (E2E) test ensures that the entire system functions as expected and can be run on-demand. The test would be responsible for ingesting live data through the system, and the **idempotent** operation ensures that the system’s success can be reliably verified. To accomplish this historical IoT data would be used to test different scenarios.
+An automated end-to-end (E2E) test ensures that the entire system functions as expected and can be run on-demand. The test would be responsible for ingesting live data through the system, and the **idempotent** operation ensures that the system’s success can be reliably verified.
+
+To achieve this, we've established an additional Timestream database for ingesting historical data for various scenarios, and during end-to-end testing, the microservices seamlessly transition to utilizing the new Timestream.
+
+![](/images/timestream_e2e_test.png "Figure 2: E2E test where historical data are replayed into a new Timestream database")
+
+In this manner, the original Timestream database can continue to function normally, receiving live data without any contamination from simulated data.

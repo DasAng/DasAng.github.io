@@ -199,7 +199,8 @@ The provided code snippet merely initializes several variables for future use. S
 
 In the subsequent segment of the code, we craft a function designed to furnish us with the unique identifier of the selected enemy unit. It's essential to note that each unit possesses its own distinct identifier.
 
-```lua
+{{< collapsible lua>}}
+--------------------------------------------------------------------------------------------------------------------------- 
 --- @function getUnitUniqueId
 --- @description This function will determine the unique id of a unit from a selected UI component.
 --- It is used when an enemy unit is selected by clicking on the ping icon.
@@ -225,8 +226,8 @@ local function getUnitUniqueId(uic)
     end
 	return "";
 end;
-```
-
+{{< /collapsible >}}
+\
 The process involves traversing the UI hierarchy of the clicked UI component in reverse order until we encounter a UI component named "modular_parent", thereby obtaining the unique identifier of the unit. We'll employ this function to identify the unit whenever the "ping icon" is clicked.
 
 
@@ -234,7 +235,7 @@ The process involves traversing the UI hierarchy of the clicked UI component in 
 
 The next part of the code is where we create the UI controls to move around the enemy unit:
 
-```lua
+{{< collapsible lua>}}
 ---------------------------------------------------------------------------------------------------------------------------
 --- @function createMindControlButtons
 --- @description This function creates the UI buttons for controlling enemy units under the
@@ -288,13 +289,15 @@ MindControl.showMindControlButtons = function(visible)
     end
     --- do the same for the remaining buttons
 end
-```
+{{< /collapsible>}}
+\
+The above code will create the buttons that enables us to control the movement of the controlled unit.
 
 #### Move, Halt, Attack
 
 Here is the code to move, halt and attack nearby enemy unit. We will be utilizing the built-in game functions *goto_location()*, *halt()* and *start_attack_closest_enemy()*.
 
-```lua
+{{< collapsible lua>}}
 ---------------------------------------------------------------------------------------------------------------------------
 --- @section move enemy east
 ---------------------------------------------------------------------------------------------------------------------------
@@ -333,15 +336,15 @@ MindControl.attackEnemy = function(context)
         MindControl.selectedMindControlUnit:start_attack_closest_enemy()
     end
 end
-```
-
+{{< /collapsible>}}
+\
 These actions will be triggered whenever one of the UI control buttons is clicked.
 
 #### Determine when the Mind Control spell is being cast
 
 The following code segment is crucial for determining when our spell is being cast. Essentially, it entails comparing whether the UI component being clicked contains an icon named "mind_control.png". As you can imagine, we can apply this same logic to any custom spells we wish to implement in the future, by checking against the icon name of the custom spell.
 
-```lua
+{{< collapsible lua>}}
 --- @function getSpell
 --- @description This function determines whether the passed in ui component is a spell button or not.
 --- If it is a spell button then this function will return the name of the spell
@@ -363,13 +366,13 @@ MindControl.getSpell = function(component)
     end
     return nil
 end
-```
+{{< /collapsible>}}
 
 #### Make enemy units selectable
 
 This section of the code will display a yellow "ping icon" above each enemy unit, enabling them to be selected once we have cast the Mind Control spell. This utilizes the game function *add_ping_icon()*. This is the solution to enabling our custom spell to target any enemy unit through Lua scripting. By clicking on a UI component on the battlefield and determining the ID of the enemy unit from the clicked UI component, we've essentially enabled ourselves to apply various actions on the enemy unit dynamically.
 
-```lua
+{{< collapsible lua>}}
 ---------------------------------------------------------------------------------------------------------------------------
 --- @function activateMindControl
 --- @description This function will activate the spell "mind control". It will find all enemy units
@@ -396,8 +399,8 @@ MindControl.activateMindControl = function()
     end
     MindControl.lastSelectedMindControlUnitId = nil
 end
-```
-
+{{< /collapsible>}}
+\
 This opens the door to many more potential custom spells in the future, allowing us to perform a variety of actions targeting enemy units through Lua scripting.
 
 ## Final thoughts

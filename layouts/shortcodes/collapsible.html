@@ -1,0 +1,5 @@
+ <details>
+    <summary style="border: 2px solid black; background-color: lightgray;"><b>Expand/Collapse Code</b></summary>
+    {{ if len .Params | eq 2 }}{{ highlight (trim .InnerDeindent "\n\r") (.Get 0) (.Get 1) }}{{ else }}{{ highlight (trim .InnerDeindent "\n\r") (.Get 0) "" }}{{ end }}
+  </details>
+  

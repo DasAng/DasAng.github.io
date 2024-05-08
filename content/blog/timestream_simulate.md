@@ -1,5 +1,5 @@
 +++
-date = "2024-05-07T08:00:00-00:00"
+date = "2024-05-08T08:00:00-00:00"
 title = "Time travelling with AWS Timestream: Simulate data in the future"
 image = "/images/timestream_simulator.jpg"
 

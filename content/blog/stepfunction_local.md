@@ -1,5 +1,5 @@
 +++
-date = "2024-05-08T15:00:00-00:00"
+date = "2024-05-13T09:00:00-00:00"
 title = "Test AWS Stepfunctions locally with CDK"
 image = "/images/stepfunction_local.jpg"
 

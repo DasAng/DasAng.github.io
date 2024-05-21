@@ -1,0 +1,3 @@
+<div class="tab-pane" title="{{ .Get 0 }}">
+    {{ if len .Params | eq 2 }}{{ highlight (trim .InnerDeindent "\n\r") (.Get 1) (.Get 2) }}{{ else }}{{ highlight (trim .InnerDeindent "\n\r") (.Get 1) "" }}{{ end }}
+   </div>

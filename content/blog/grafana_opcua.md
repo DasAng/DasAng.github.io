@@ -1,11 +1,11 @@
 +++
 date = "2024-05-21T07:00:00-00:00"
-title = "OPC UA data source plugin in Grafana: Part 1"
+title = "OPC UA realtime streaming in Grafana: Part 1"
 image = "/images/grafana_opcua.jpg"
 
 +++
 
-Welcome to the first installment of our series, where we’ll develop a Grafana plugin capable of streaming real-time data from any **OPC Unified Architecture (OPC UA)** server. In my prior projects, I’ve handled data collection from various IoT devices using the OPC UA client/server framework for seamless data exchange between devices and applications. The data was visualized and monitored using [Grafana](https://grafana.com/)
+Welcome to the first installment of our series, where we’ll develop a Grafana plugin capable of streaming realtime data from any **OPC Unified Architecture (OPC UA)** server. In my prior projects, I’ve handled data collection from various IoT devices using the OPC UA client/server framework for seamless data exchange between devices and applications. The data was visualized and monitored using [Grafana](https://grafana.com/)
 
 ![](/images/grafana_dashboard.png "Figure 1: An example visualization of IoT sensor in Grafana")
 
@@ -35,8 +35,9 @@ So in this series we will be building a data source plugin for Grafana that enab
 
 In this part of the series we will be covering the following topics:
 
-- Overview of Grafana data source plugin architecture
+- Overview of Grafana plugin architecture
 - Tools needed to start development
+- Start Grafana locally in a Docker Container
 
 ## The foundation
 
@@ -72,7 +73,8 @@ To build our plugin, we need to install the following tools and software, you ca
 - Go (The Golang programming language)
 - Mage (https://magefile.org/)
 - NodeJs
-- create-plugin (the cli to scaffold a new plugin)
+- `create-plugin` (A CLI to scaffold new plugins)
+- `sign-plugin` (A CLI to sign plugins for distribution)
 
 If you’re developing on a Windows operating system, I recommend installing the following tools for smoother local development
 
@@ -80,3 +82,90 @@ If you’re developing on a Windows operating system, I recommend installing the
 - **Windows Subsystem For Linux (WSL)**
 
 You’ll need WSL because the `create-plugin` tool only supports WSL. See this [documentation](https://grafana.com/developers/plugin-tools/get-started/set-up-development-environment/) on how to setup a development environment.
+
+
+## Scaffold new plugin
+
+The first step is to scaffold a new plugin. To do this we will need to install the `create-plugin` tool. Execute the following command:
+
+{{< codetabs>}}
+{{< codetab npm shell>}}
+npx @grafana/create-plugin@latest
+{{< /codetab>}}
+{{< codetab yarn shell>}}
+yarn create @grafana/plugin
+{{< /codetab>}}
+{{< /codetabs>}}
+
+Follow the prompts to create a data source plugin with a backend. Give it a name like for example *grafana-opcuasource*. Once you have scaffolded the plugin you should have a folder structure similar to this
+
+{{< collapsible shell>}}
+grafana-opcuasource-datasource/
+├── .config/
+├── cypress
+│   ├── integration
+│   │   ├── 01-smoke.spec.ts
+├── pkg
+│   ├── main.go
+│   └── plugin
+├── provisioning
+│   ├── datasources
+│   │   ├── .gitkepp
+│   │   ├── .datasources.yml
+│   ├── READNE.md
+├── src
+│   ├── README.md
+│   ├── components
+│   │   ├── ConfigEditor.tsx
+│   │   ├── QueryEditor.tsx
+│   ├── datasource.ts
+│   ├── img
+│   │   ├── logo.svg
+│   ├── module.ts
+│   ├── plugin.json
+│   └── types.ts
+├── .eslintrc
+├── .gitignore
+├── .nvmrc
+├── .prettierrc.js
+├── cypress.json
+├── CHANGELOG.md
+├── LICENSE
+├── Magefile.go
+├── README.md
+├── docker-compose.yaml
+├── go.mod
+├── go.sum
+├── jest-setup.js
+├── jest.config.js
+├── node_modules
+├── package.json
+├── tsconfig.json
+{{< /collapsible>}}
+
+You are now ready to start development.
+
+## Run Grafana in Docker Container
+
+To develop and test our plugin, we require Grafana to be running in our local development environment. I’ll use Docker Desktop for this purpose since I’m working on a Windows environment. However, if you’re using MacOS or Linux, you can run Grafana in your own Docker environment.
+
+Start Docker Desktop and then execute the following command on your terminal:
+
+{{< codetabs>}}
+{{< codetab npm shell>}}
+npm run server
+{{< /codetab>}}
+{{< codetab yarn shell>}}
+yarn server
+{{< /codetab>}}
+{{< /codetabs>}}
+
+This command will execute `docker-compose`, which will download the Grafana Docker image if it’s not already present, and then create a Docker container using that image.
+
+![](/images/grafana_docker_image.png "Figure 2: Docker Desktop showing the newly downloaded Grafana Docker image")
+
+![](/images/grafana_docker_container.png "Figure 3: A Docker container has been created and is running the Grafana software")
+
+Now open a browser and navigate to `http://localhost:3000` and you will be able to to see the Grafana dashboard. Navigate to the menu **Connection->Data sources** and you can see your newly created data source plugin displayed
+
+![](/images/grafana_data_connection.png "Figure 4: Our data source plugin is displayed in the list of data sources available")

@@ -1,6 +1,6 @@
 +++
 title = ""
-nextDate = "2024-05-??"
+nextDate = "2024-??-??"
 weight = 4
 +++
 

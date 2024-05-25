@@ -1,11 +1,11 @@
 +++
 date = "2024-05-23T10:00:00-00:00"
-title = "How to add Social Log In for Android Game using Unity and Firebase"
+title = "How to add Social Log In for Android Game using Unity and Firebase: Part 1"
 image = "/images/unity_firebase.jpg"
 
 +++
 
-This post will guide you through adding social login functionality to your Unity game on Android. We’ll demonstrate how to build a simple Android application in Unity and integrate login using Google accounts, as well as manage users in Firebase. I will share with you the good, the bad and the ugly part of what I've learned during the process.
+Welcome to the first installment of our series, where we'll guide you through adding social login functionality to your Unity game on Android. We’ll demonstrate how to build a simple Android application in Unity and integrate login using Google accounts, as well as manage users in Firebase. I will share with you the good, the bad and the ugly part of what I've learned during the process.
 
 ## Background
 
@@ -69,7 +69,9 @@ To follow this guide you will need to have the following:
 - **Visual Studio Code**
 - **Android phone (I've tested on Galaxy Z Fold, but any model should be fine)**
 
-Guide steps:
+## What we will cover in Part 1
+
+In this part of the series we will be covering the following steps:
 
 - [Unity setup](#unity-setup)
     - [Install Android Build Support module](#install-android-build-support-module)
@@ -79,10 +81,6 @@ Guide steps:
 - [Setup Android Build](#setup-android-build)
     - [Create keystore for signing](#create-keystore-for-signing)
     - [Set Android API Level](#set-android-api-level)
-- [Create Google API Credentials](#create-google-api-credentials)
-    - [Get Package name](#get-package-name)
-    - [Get SHA-1 certificate fingerprint](#get-sha-1-certificate-fingerprint)
-    - [Create OAuth Client ID](#create-oauth-client-id)
 
 ## Unity setup
 
@@ -199,56 +197,8 @@ We will be importing packages that require a minimum Android API level of 23 and
 
 ![](/images/unity_target_level.png "Figure 14: Set API Level")
 
-## Create Google API Credentials
+## Conclusion
 
-To enable sign-in using a Google Account in our Android game, we require an **OAuth Client ID** that our Android game will utilize during the sign-in authentication process. But before we can create the OAuth Client ID, we need to first configure the **OAuth Consent Screen**. This screen provides the information that will be presented to the user whenever they attempt to sign in using their Google Account.
+In this part of our series, we’ve covered how to configure Unity for building our Android game. Additionally, we’ve created a user interface (UI) that allows players to sign in using their Google accounts.
 
-If you haven’t already created a **Google Cloud Project**, you can do so. Then navigate to **APIs & Services** in the Google Console.
-
-1. Select **OAuth consent screen**. For user type select **External** and click the **Create** button
-2. Next in the app registration form select a name that will be displayed for users when signing in to Google Account. Here you can enter whatever name you wish. You also need to provide email and developer email that will be presented to the user.
-3. Next you will need to choose the OAuth scopes. Click on the **Add or remove scopes**
-4. Select **auth/userinfo.email** and **auth/userinfo.profile**.
-5. Next you can add a test user. Click on the **Add users** and enter an email address for your test user.
-
-![](/images/oauth_consent_screen_combined.png "Figure 15: Configure OAuth Consent Screen")
-
-Once the OAuth consent screen has been configured we can create an OAuth Client ID. We will need to provide two important information when we create the OAuth Client ID: **Package name** and **SHA-1 certificate fingerprint**.
-
-##### Get Package name
-
-For the **Package name** you must use the same name as the one configured in Unity. It is located in **File** ➡️ **Build settings...** ➡️ **Player settings** ➡️ **Other settings** ➡️ **Identification** ➡️ **Package name** , see **figure 17**.
-
-![](/images/unity_package_name.png "Figure 17: How to get the package name of your Android Game")
-
-##### Get SHA-1 certificate fingerprint
-
-To obtain the **SHA-1 certificate fingerprint**, you'll need to use a tool called **keytool**, which is typically included with your Java or OpenJDK installation. In my case, I've installed OpenJDK as part of the Android Build Support module, and you can find the tool at this location `C:\Program Files\Unity\Hub\Editor\2022.3.29f1\Editor\Data\PlaybackEngines\AndroidPlayer\OpenJDK\bin\keytool.exe`. Now, recall that when we initially created the [keystore file](#create-keystore-for-signing), we’ll need to extract the SHA-1 fingerprint of the key within that keystore. To accomplish this, execute the following command:
-
-```shell
-keytool -keystore <path-to-keystore> -list -v
-```
-
-Replace `<path-to-keystore>` above with the location where you stored the keystore file. The result should look like figure 18.
-
-![](/images/unity_sha1_fingerprint.png "Figure 18: Extract SHA-1 fingerprint from keystore")
-
-Copy the SHA-1 fingerprint from the result we will need it in the next step when creating the OAuth Client ID.
-
-##### Create OAuth Client ID
-
-Back to Google Cloud Console navigate to **APIs & Services**.
-
-1. Select **Credentials** menu and then choose **Create Credentials** ➡️ **OAuth Client ID**.
-2. Under **Application type** choose **Android**. Enter a name for the client id, this can be anything. It is important to enable the **Custom URI scheme** so deep linking will work. We will get back to this in more details later in this post. The **SHA-1 certificate fingerprint** and **Package name** can be found at [Get Package name](#get-package-name) and [Get SHA-1 certificate fingerprint](#get-sha-1-certificate-fingerprint).
-
-![](/images/oauth_client_id_combined.png "Figure 19: Create OAuth Client ID")
-
-This will create a new OAuth Client ID that we can use in our Android Game. Now if we wanted to test our Android Game inside the Unity Editor we would also need to create another OAuth Client ID of type **Web application**, this will make it much easier to test the authentication process before installing the Android Game on a real phone. To do this repeat the above step but instead of selecting **Android** for **Application Type** choose **Web application** 
-
-1. Select **Credentials** menu and then choose **Create Credentials** ➡️ **OAuth Client ID**.
-2. Under **Application type**, choose **Web application**. Enter a name for the client ID; it can be anything you like. Additionally, provide a redirect URI using this address: `http://127.0.0.1:5229/code?`. The redirect URI is the address where the OAuth flow will redirect once it completes the authentication process. We've specified a localhost address here because later in this post, we'll set up a local server listening on localhost. It will all make sense when we get to the C# code.
-
-![](/images/oauth_web_app.png "Figure 20: Create OAuth Client ID for web application to be used for testing inside Unity Editor")
-
-Now we have two OAuth Client IDs: one for use on an Android phone and the other for use inside the Unity Editor.
+This concludes part 1 of our series. In [part2]({{< ref "unity_firebase_part2" >}}), I’ll guide you through creating a Google OAuth Client ID that our game can use for enabling sign-in with Google Accounts.

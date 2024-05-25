@@ -1,53 +1,74 @@
-<mxfile host="app.diagrams.net" modified="2024-05-23T14:56:12.632Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="ZVMZ3YHDqXCOLS2Z5PvY" version="24.3.1" type="device">
-  <diagram name="Page-1" id="E1cwpNWVykyqY8nxQpHa">
+<mxfile host="app.diagrams.net" modified="2024-05-24T09:12:15.612Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="HeMM9NurEfCYAgH1V9Pb" version="24.4.6" type="device">
+  <diagram name="Page-1" id="-iefu8_nOmsA5hSw0VI-">
     <mxGraphModel dx="2954" dy="1106" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="glpb71_t4Twcw8fPRCUI-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="glpb71_t4Twcw8fPRCUI-1" target="glpb71_t4Twcw8fPRCUI-4">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h1NCzs-GPwkN7Z1aDPaY-3" target="h1NCzs-GPwkN7Z1aDPaY-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-9" value="Sign In" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="glpb71_t4Twcw8fPRCUI-8">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-2" value="Sign In" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h1NCzs-GPwkN7Z1aDPaY-1">
           <mxGeometry x="-0.2132" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-1" value="Android Game" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn2.iconfinder.com/data/icons/boxicons-logos/24/bxl-unity-128.png" vertex="1" parent="1">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-3" value="Android Game" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn2.iconfinder.com/data/icons/boxicons-logos/24/bxl-unity-128.png" vertex="1" parent="1">
           <mxGeometry x="100" y="185" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-2" value="" style="strokeColor=#dddddd;shadow=1;strokeWidth=1;rounded=1;absoluteArcSize=1;arcSize=2;" vertex="1" parent="1">
-          <mxGeometry x="580" y="189.69999999999996" width="100" height="60" as="geometry" />
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="h1NCzs-GPwkN7Z1aDPaY-4" target="h1NCzs-GPwkN7Z1aDPaY-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="110" />
+              <mxPoint x="135" y="110" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-3" value="Firebase" style="sketch=0;dashed=0;connectable=0;html=1;fillColor=#5184F3;strokeColor=none;shape=mxgraph.gcp2.firebase;part=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=5;fontColor=#999999;fontSize=12;" vertex="1" parent="glpb71_t4Twcw8fPRCUI-2">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-16" value="JWT Token" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h1NCzs-GPwkN7Z1aDPaY-15">
+          <mxGeometry x="0.0444" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-4" value="" style="strokeColor=#dddddd;shadow=1;strokeWidth=1;rounded=1;absoluteArcSize=1;arcSize=2;" vertex="1" parent="1">
+          <mxGeometry x="890" y="190" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-5" value="Firebase" style="sketch=0;dashed=0;connectable=0;html=1;fillColor=#5184F3;strokeColor=none;shape=mxgraph.gcp2.firebase;part=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=5;fontColor=#999999;fontSize=12;" vertex="1" parent="h1NCzs-GPwkN7Z1aDPaY-4">
           <mxGeometry width="32.4" height="45" relative="1" as="geometry">
             <mxPoint x="5" y="7" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="glpb71_t4Twcw8fPRCUI-4" target="glpb71_t4Twcw8fPRCUI-2">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="h1NCzs-GPwkN7Z1aDPaY-8" target="h1NCzs-GPwkN7Z1aDPaY-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-13" value="Get Access token" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="glpb71_t4Twcw8fPRCUI-10">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-7" value="Exchange access token&lt;div&gt;for a JWT token&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h1NCzs-GPwkN7Z1aDPaY-6">
           <mxGeometry x="0.0618" y="3" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-4" value="Google Account" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.google" vertex="1" parent="1">
-          <mxGeometry x="340" y="185" width="65.2" height="69.4" as="geometry" />
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-8" value="Google Account" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.google" vertex="1" parent="1">
+          <mxGeometry x="560" y="185.60000000000002" width="65.2" height="69.4" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-5" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.lock" vertex="1" parent="1">
-          <mxGeometry x="310" y="410" width="39" height="50" as="geometry" />
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h1NCzs-GPwkN7Z1aDPaY-9" target="h1NCzs-GPwkN7Z1aDPaY-8">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-7" value="" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-14" value="OpenID Connect protocol" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h1NCzs-GPwkN7Z1aDPaY-13">
+          <mxGeometry x="-0.1292" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-9" value="I5 toolKit" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.lock" vertex="1" parent="1">
+          <mxGeometry x="310" y="195" width="39" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-10" value="" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
           <mxGeometry x="340" y="440" width="74" height="71.04" as="geometry" />
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="glpb71_t4Twcw8fPRCUI-1" target="glpb71_t4Twcw8fPRCUI-7">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="h1NCzs-GPwkN7Z1aDPaY-3" target="h1NCzs-GPwkN7Z1aDPaY-10">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="140" y="485" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="glpb71_t4Twcw8fPRCUI-12" value="Call backend API&lt;div&gt;using player&#39;s identity token&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="glpb71_t4Twcw8fPRCUI-11">
+        <mxCell id="h1NCzs-GPwkN7Z1aDPaY-12" value="Call backend API&lt;div&gt;using player&#39;s JWT token&lt;/div&gt;&lt;div&gt;received from Firebase&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h1NCzs-GPwkN7Z1aDPaY-11">
           <mxGeometry x="-0.3212" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>

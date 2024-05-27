@@ -1,9 +1,9 @@
 +++
 title = ""
-nextDate = "2024-05-??"
-weight = 4
+nextDate = "2024-05-30"
+weight = 3
 +++
 
-## OPC-UA data source plugin in Grafana
+## OPC UA realtime streaming in Grafana: Part 1
 
-This post we will build a plugin for Grafana that can stream live data from any OPC-UA server
+This first installment of a series on how to build a plugin for Grafana that can stream live data from any OPC-UA server

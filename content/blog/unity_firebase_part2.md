@@ -173,4 +173,4 @@ Reference validation can be disabled in the Plugin Inspector
 
 In this segment of our series, we’ve covered the process of creating Google OAuth credentials that allow our game to sign in using Google Accounts. Additionally, we’ve established a new Firebase project and registered our Unity game. Finally, we’ve integrated the Firebase SDK into our Unity game and configured Unity to build the entire game with the Firebase SDK.
 
-This concludes Part 2 of our series. In Part 3, I'll guide you through integrating the **i5 Toolkit for Unity** library to handle much of the OAuth2 authentication flow. 🎮🔐
+This concludes Part 2 of our series. In [part3]({{< ref "unity_firebase_part3" >}}), I'll guide you through integrating the **i5 Toolkit for Unity** library to handle much of the OAuth2 authentication flow. 🎮🔐

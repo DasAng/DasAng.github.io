@@ -20,6 +20,7 @@ In [part2]({{< ref "unity_firebase_part2" >}}) we covered how to create Google O
     - [Create GameObject and associated our script](#create-gameobject-and-associated-our-script)
     - [RedirectURI and deep linking](#redirecturi-and-deep-linking)
 - [Handling User Authentication with Google Account and Firebase](#handling-user-authentication-with-google-account-and-firebase)
+- [Run the game inside Unity Editor](#run-the-game-inside-unity-editor)
 
 ## Download and install i5 Toolkit for Unity
 
@@ -438,3 +439,35 @@ Now that we have the script ready, we will need to assign the `SignIn` method to
 5. Drag and drop the **AuthManager** GameObject onto the **On Click ()** component and choose the function **SignIn**
 
 ![](/images/unity_button_click.png "Figure 5: Attach SignIn method to the button click event")
+
+## Run the game inside Unity Editor
+
+1. **Press Play:**
+   - Click the **Play** button (usually a triangular icon) in the Unity Editor. This action will simulate running your game.
+
+2. **Click the Sign In Button:**
+   - Click the button to initiate the sign-in process.
+
+3. **Google Account Sign-In Page:**
+   - Your default web browser will open a webpage.
+   - On this page, you'll be prompted to sign in using your Google Account.
+   - Enter your test user credentials (email and password) to proceed.
+
+4. **Expected Behavior:**
+   - After successful sign-in, you'll be redirected to a blank page (this is expected).
+   - Don't worry; this behavior occurs because we're testing the authentication flow.
+
+5. **Check Unity Console Output:**
+   - Switch back to the Unity Editor.
+   - Look at the **Console** tab (usually located at the bottom of the Unity window).
+   - You should see relevant messages related to the sign-in process.
+
+![](/images/unity_run_game_in_editor.png "Figure 6: Console output shows sign in successfully")
+
+Now we have tested that the sign in process works when running the game inside the Unity Editor. To ensure that the Firebase authentication also worked as expected, log in to the Firebase project and under **users** you should be able to see your user.
+
+## Conclusion
+
+In this segment of our series, we’ve implemented the C# code to sign in to our Google Account and authenticate against Firebase. Additionally we have tested that we can successfully sign in when running the game inside the Unity Editor.
+
+This concludes Part 3 of our series. In Part 4, the last part of the series, we will install and test the game in a real Android phone.

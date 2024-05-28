@@ -341,6 +341,11 @@ public class AuthManager : MonoBehaviour
             Firebase.Auth.AuthResult result = task.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 result.User.DisplayName, result.User.UserId);
+            
+            // Get user's ID token that can be used to authorize against Google API Gateway
+            result.User.TokenAsync(false).ContinueWith(idToken => {
+                Debug.Log("User id token: " + idToken.Result);
+            });
         });
     }
 }
@@ -470,4 +475,4 @@ Now we have tested that the sign in process works when running the game inside t
 
 In this segment of our series, we’ve implemented the C# code to sign in to our Google Account and authenticate against Firebase. Additionally we have tested that we can successfully sign in when running the game inside the Unity Editor.
 
-This concludes Part 3 of our series. In Part 4, the last part of the series, we will install and test the game in a real Android phone.
+This concludes Part 3 of our series. In [part4]({{< ref "unity_firebase_part4" >}}), the last part of the series, we will install and test the game in a real Android phone.

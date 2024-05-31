@@ -1,5 +1,5 @@
 +++
-date = "2024-05-21T07:00:00-00:00"
+date = "2024-05-30T07:00:00-00:00"
 title = "OPC UA realtime streaming in Grafana: Part 1"
 image = "/images/grafana_opcua.jpg"
 
@@ -17,11 +17,11 @@ But there was also a need to empower subject matter experts (SMEs) to connect di
 
 After extensive research on the web and the official Grafana site, I discovered the [Grafana OPC UA plugin](https://grafana.com/docs/plugins/grafana-opcua-datasource/latest/). Unfortunately, this plugin was developed for an older Grafana version and is no longer maintained—it has been deprecated, as indicated in the [Github repo](https://github.com/grafana/opcua-datasource). Additionally, it lacks password authentication, which is a critical requirement for some of the OPC UA servers.
 
-That gives me no choice but to build my own plugin. The result is an open-source OPC UA grafana plugin at this [Github repository](). You can refer to the source code to understand how I’ve implemented the plugin.
+That gives me no choice but to build my own plugin. The result is an open-source OPC UA grafana plugin at this [Github repository]() (**COMING SOON**). You can refer to the source code to understand how I’ve implemented the plugin.
 
-## What we will be building
+## Inside look of the Grafana OPC UA plugin
 
-So in this series we will be building a data source plugin for Grafana that enables the following functionalities:
+So in this series I'll show you how I have built a data source plugin for Grafana that enables the following functionalities:
 
 - Connect to an OPC UA server
 - Authenticate against OPC UA server using Anonymous or Password/Username methods
@@ -169,3 +169,9 @@ This command will execute `docker-compose`, which will download the Grafana Dock
 Now open a browser and navigate to `http://localhost:3000` and you will be able to to see the Grafana dashboard. Navigate to the menu **Connection->Data sources** and you can see your newly created data source plugin displayed
 
 ![](/images/grafana_data_connection.png "Figure 4: Our data source plugin is displayed in the list of data sources available")
+
+## Conclusion
+
+In this part of our series, I’ve covered the various plugin types in Grafana, and how to scaffold a datasource plugin. Additionally, I've shown how to run Grafana locally inside a Docker container.
+
+This concludes part 1 of our series. In Part 2, I’ll guide you through the basic structure of a data source plugin.

@@ -73,3 +73,11 @@ It will support the following functionality:
 The frontend component is written in **Typescript** using the React framework and runs in the user's browser, hosted by the Grafana server.
 
 Its primary responsibility is to enable users to configure OPC UA data sources to connect to, and subscribe to OPC UA nodes for streaming. Additionally it enables users to set up alerting rules for the subscribed OPC UA nodes.
+
+It communicates with the backend via HTTP API calls to the Grafana server, which in turn forwards the message over gRPC to the backend component.
+
+## Conclusion
+
+In this segment of our series, we’ve covered the basic architecture of our Grafna plugin and how it consists of a backend and frontend component. We've also explained the functionalities of the backend and frontend component.
+
+This concludes Part 2 of our series. In Part 3, I'll guide you through the impementation of the backend component.

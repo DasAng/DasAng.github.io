@@ -107,3 +107,11 @@ table {
     text-align: center;
     font-size: 20px;
 }
+
+/********************************* Figure captions ***************************************************/
+
+figure figcaption {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}

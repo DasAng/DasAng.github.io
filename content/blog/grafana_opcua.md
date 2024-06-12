@@ -174,4 +174,4 @@ Now open a browser and navigate to `http://localhost:3000` and you will be able 
 
 In this part of our series, I’ve covered the various plugin types in Grafana, and how to scaffold a datasource plugin. Additionally, I've shown how to run Grafana locally inside a Docker container.
 
-This concludes part 1 of our series. In Part 2, I’ll guide you through the basic structure of a data source plugin.
+This concludes part 1 of our series. In [part2]({{< ref "grafana_opcua_part2" >}}), I’ll guide you through the basic structure of a data source plugin.

@@ -1,0 +1,9 @@
++++
+title = ""
+nextDate = "2024-06-20"
+weight = 2
++++
+
+## How to automate integration tests for AWS Eventbridge using CI/CD
+
+In this post I will discuss different ways of testing eventbridge integration in a CI/CD setup

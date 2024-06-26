@@ -80,4 +80,4 @@ It communicates with the backend via HTTP API calls to the Grafana server, which
 
 In this segment of our series, we’ve covered the basic architecture of our Grafna plugin and how it consists of a backend and frontend component. We've also explained the functionalities of the backend and frontend component.
 
-This concludes Part 2 of our series. In Part 3, I'll guide you through the impementation of the backend component.
+This concludes Part 2 of our series. In [part3]({{< ref "grafana_opcua_part3" >}}), I'll guide you through the impementation of the backend component.

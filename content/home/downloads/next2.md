@@ -1,6 +1,6 @@
 +++
 title = ""
-nextDate = "2024-06-20"
+nextDate = "2024-07-05"
 weight = 2
 +++
 
